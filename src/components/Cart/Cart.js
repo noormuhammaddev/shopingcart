@@ -2,7 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './Cart.scss';
+import { IconButton } from '@mui/material';
 
 function Cart({ cart, removeFromCart, updateQuantity }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,20 +39,34 @@ function Cart({ cart, removeFromCart, updateQuantity }) {
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
-        }}
+        }}  
+        className="cart-menu"
       >
-        <ul>
+        <ul className="selected-products">
           {cart.map(item => (
             <li key={item.id}>
-              {item.name} - ${item.price} x
-              <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
-              {item.quantity}
-              <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+              <div class="product-name">{item.name}</div>
+              <div className="actions">
+                ${item.price} x
+                <Button variant="outlined" size="small" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                  -
+                </Button>
+                {item.quantity}
+                <Button variant="outlined" size="small" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                  +
+                </Button>
+                <IconButton aria-label="delete" size="small" onClick={() => removeFromCart(item.id)}>
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
+              </div>
             </li>
           ))}
         </ul>
-        <p>Total: ${getTotalPrice()}</p>
+
+        <div className="total">
+          <span>Total:</span> 
+          <span>${getTotalPrice()}</span>
+        </div>
       </Menu>
     </div>
   );

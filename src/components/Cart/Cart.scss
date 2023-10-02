@@ -3,9 +3,47 @@
   top: 6px;
   right: 0;
   z-index: 1200;
+}
 
-  .MuiPaper-root {
-    width: 300px;
-    right: 0;
+.selected-products {
+  margin: 0;
+  padding: 0;
+  width: 300px;
+
+  li {
+    list-style: none;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .product-name {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      .css-1k23hlb-MuiButtonBase-root-MuiButton-root {
+        min-width: 30px;
+        padding: 0 5px;
+      }
+    }
   }
+}
+
+.total {
+  border-top: 1px solid #ede2e2;
+  width: 300px;
+  padding: 10px 15px 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
