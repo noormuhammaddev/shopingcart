@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Shoping Cart | React Js based Basic App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
