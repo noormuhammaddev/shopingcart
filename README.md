@@ -3,7 +3,7 @@
 This is the robust, fully featured React App Shoping cart demo. The demo allows the visitor to add the products into cart. This README is a continuation of the ShopingCart app - pull down the master branch to complete code.
 
 - [Setup](#setup) - Follow these instructions to run the example search application.
-- [Features](#features) - Considerations when building a React-based search application for artist.
+- [Features](#features) - Considerations when building a React-based application for shoping cart.
 
 ## Setup
 
