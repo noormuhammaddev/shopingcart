@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProductList from './ProductList';
 import Cart from '../../components/Cart/Cart';
 import TopBar from '../../components/TopBar';
+import { useQuery } from 'react-query';
+
+const getProducts = async () => {
+  const response = await fetch('https://my-json-server.typicode.com/benirvingplt/products/products');
+  if (!response.ok) {
+    throw new Error('Network problem');
+  }
+  return response.json();
+};
 
 function Products() {
-  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    fetch('https://my-json-server.typicode.com/benirvingplt/products/products')
-      .then(response => response.json())
-      .then(data => setProducts(data));
-  }, []);
+  const { data, isLoading, error } = useQuery('products', getProducts);
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error: {error.message}</div>;
 
   const addToCart = (product) => {
     const updatedCart = [...cart];
@@ -45,7 +52,7 @@ function Products() {
   return (
     <>
       <TopBar />
-      <ProductList products={products} addToCart={addToCart} />
+      <ProductList products={data} addToCart={addToCart} />
       <Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
     </>
   );
