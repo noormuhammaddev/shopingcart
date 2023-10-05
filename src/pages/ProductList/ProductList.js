@@ -68,10 +68,6 @@ function ProductList({ products, addToCart }) {
                   <Typography align="center" className="mt-2" margin="normal"  sx={{ mt: 3 }}>
                     Price: <strong>${product.price}</strong>
                   </Typography>
-
-                  {/* <Typography align="center" className="mt-2" margin="normal"  sx={{ mt: 3 }}>
-                    Qty in bag: {product.quantity || 0}
-                  </Typography> */}
                 </CardContent>
 
                 <CardActions sx={{display: 'flex', justifyContent: 'center', paddingBottom: '18px'}}>

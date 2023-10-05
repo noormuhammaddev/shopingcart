@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Cart.scss';
 import { IconButton } from '@mui/material';
+import Badge from '@mui/material/Badge';
 
 function Cart({ cart, removeFromCart, updateQuantity }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,7 +31,14 @@ function Cart({ cart, removeFromCart, updateQuantity }) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <ShoppingCartIcon color="inherit" />
+        {
+          cart.length > 0 ? (
+            <Badge badgeContent={cart.length} color="error">
+              <ShoppingCartIcon color="inherit" />
+            </Badge>
+          ) : (<ShoppingCartIcon color="inherit" />)
+        }
+    
       </Button>
       <Menu
         id="basic-menu"
@@ -43,9 +51,9 @@ function Cart({ cart, removeFromCart, updateQuantity }) {
         className="cart-menu"
       >
         <ul className="selected-products">
-          {cart.map(item => (
-            <li key={item.id}>
-              <div class="product-name">{item.name}</div>
+          {cart.map((item, index) => (
+            <li key={item.id} data-table={index}>
+              <div className="product-name">{item.name}</div>
               <div className="actions">
                 ${item.price} x
                 <Button variant="outlined" size="small" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
