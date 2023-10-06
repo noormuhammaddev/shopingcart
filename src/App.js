@@ -1,7 +1,8 @@
 import React from 'react';
 import TopBar from './components/TopBar';
-import Products from './pages/ProductList/Products';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
+import { StaticRoutes } from './routing/Routing';
 
 const queryClient = new QueryClient();
 
@@ -10,7 +11,9 @@ function App() {
     <div className="App">
       <TopBar />
       <QueryClientProvider client={queryClient}>
-        <Products />
+        <BrowserRouter>
+          <StaticRoutes />
+        </BrowserRouter>
       </QueryClientProvider>
     </div>
   );
